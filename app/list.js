@@ -56,7 +56,7 @@ export default class List extends Component {
     produces = produces.filter( produce => {
       return produce.availabilityFresh.indexOf(currentMonth) != -1 || produce.availabilityStored.indexOf(currentMonth) != -1
     }).sort( (a, b) => {
-        return a.availabilityFresh.indexOf(currentMonth)
+      return a.availabilityStored.indexOf(currentMonth)
     })
 
     return (
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-});
+})
