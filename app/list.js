@@ -6,14 +6,14 @@ import {
   ScrollView
 } from 'react-native';
 
-import Ingredient from './ingredient'
+import Produce from './produce'
 
 export default class List extends Component {
   constructor() {
     super(...arguments)
     this.state = {
       loading: false,
-      ingredients: null
+      produces: null
     }
   }
 
@@ -28,7 +28,7 @@ export default class List extends Component {
         res.json().then( (data) => {
             console.log(data)
 
-            window.ingredients = data.feed.entry.map( (entry) => {
+            window.produces = data.feed.entry.map( (entry) => {
               var displayName = entry["gsx$displayname"]["$t"]
               return {
                 id: entry["gsx$id"]["$t"],
@@ -42,7 +42,7 @@ export default class List extends Component {
               }
             })
             this.setState({
-              ingredients: window.ingredients,
+              produces: window.produces,
               loading: false
             })
         })
@@ -52,9 +52,9 @@ export default class List extends Component {
   render() {
     let currentMonth = (new Date()).getMonth() + 1
     currentMonth = currentMonth >= 10 ? currentMonth.toString() : "0" + currentMonth
-    var ingredients = this.state.ingredients || []
-    ingredients = ingredients.filter( ingredient => {
-      return ingredient.availabilityFresh.indexOf(currentMonth) != -1 || ingredient.availabilityStored.indexOf(currentMonth) != -1
+    var produces = this.state.produces || []
+    produces = produces.filter( produce => {
+      return produce.availabilityFresh.indexOf(currentMonth) != -1 || produce.availabilityStored.indexOf(currentMonth) != -1
     }).sort( (a, b) => {
         return a.availabilityFresh.indexOf(currentMonth)
     })
@@ -63,8 +63,8 @@ export default class List extends Component {
       <View style={styles.container}>
         <Text>{ this.state.loading ? "..." : "" }</Text>
         <View style={styles.list}>
-          { ingredients.map( ingredient => {
-            return <Ingredient ingredient={ingredient} key={ingredient.id} />
+          { produces.map( produce => {
+            return <Produce produce={produce} key={produce.id} />
           })}
         </View>
       </View>

@@ -5,13 +5,13 @@ import {
   View
 } from 'react-native';
 
-export default class Ingredient extends Component {
+export default class Produce extends Component {
 
   render() {
-    let ingredient = this.props.ingredient
+    let produce = this.props.produce
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{ingredient.displayName}</Text>
+        <Text style={styles.text}>{produce.displayName}</Text>
       </View>
     );
   }

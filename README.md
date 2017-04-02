@@ -12,7 +12,7 @@ fetch(dataUrl).then( (res) => {
     res.json().then( (data) => {
         console.log(data)
 
-        window.ingredients = data.feed.entry.map( (entry) => {
+        window.produces = data.feed.entry.map( (entry) => {
           return {
             id: entry["gsx$id"]["$t"],
             name: entry["gsx$name"]["$t"],
