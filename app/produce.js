@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
+
 
 export default class Produce extends Component {
   render() {
     let produce = this.props.produce
     return <View style={styles.container}>
       <Text style={styles.text}>{produce.displayName}</Text>
+      <Image
+        style={{width: 50, height: 50}}
+        source={{uri: produce.image_url}}
+      />
     </View>
   }
 }

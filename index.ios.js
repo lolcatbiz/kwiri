@@ -10,7 +10,7 @@ export default class kwiri extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Kwiri im { currentMonth }
+          kwiri im { currentMonth }
         </Text>
         <ScrollView style={{width: '100%'}}>
           <List />
