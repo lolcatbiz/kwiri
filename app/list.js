@@ -16,27 +16,20 @@ export default class List extends Component {
   }
 
   loadData() {
-    var dataUrl = "https://spreadsheets.google.com/feeds/list/1vvwgg3KVj0LGL86dqyW1Ey-G7bcXheGIVIDMzA8LMus/od6/public/values?alt=json"
+    var dataUrl = "https://api.airtable.com/v0/app863P5eKD1VjAPh/Produces?api_key=keycA6O6ZQHG2DLdb&1"
     this.setState({loading: true})
 
     fetch(dataUrl).then( (res) => {
         res.json().then( (data) => {
-            window.produces = data.feed.entry.map( (entry) => {
-              var displayName = entry["gsx$displayname"]["$t"]
-              return {
-                id: entry["gsx$id"]["$t"],
-                name: entry["gsx$name"]["$t"],
-                displayName: displayName && displayName.length > 0 ? displayName : entry["gsx$name"]["$t"],
-                availabilityFresh: entry["gsx$defresh"]["$t"],
-                availabilityStored: entry["gsx$destored"]["$t"],
-                image_url: entry["gsx$imgurl"]["$t"],
-
-                //months: entry["gsx$months"]["$t"],
-              }
+            let produces = data.records.map( (record) => {
+              record.fields.availabilityFresh = record.fields.availabilityFresh || []
+              record.fields.availabilityStored = record.fields.availabilityStored || []
+              record.fields.displayName = record.fields.displayName && record.fields.displayName.length > 0 ? record.fields.displayName  : record.fields.name
+              return record.fields
             })
 
             this.setState({
-              produces: window.produces,
+              produces: produces,
               loading: false
             })
         })
@@ -101,6 +94,8 @@ export default class List extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   list: {
     flex: 1,
