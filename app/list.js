@@ -30,7 +30,7 @@ export default class List extends Component {
                 availabilityFresh: entry["gsx$defresh"]["$t"],
                 availabilityStored: entry["gsx$destored"]["$t"],
                 image_url: entry["gsx$imgurl"]["$t"],
-
+                color: entry["gsx$color"]["$t"],
                 //months: entry["gsx$months"]["$t"],
               }
             })
