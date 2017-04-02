@@ -6,13 +6,16 @@ import Overview from './app/overview'
 
 export default class kwiri extends Component {
   getChildContext() {
-    return {navigator: this};
+//    return {navigator: {push: () => {alert('ok')}}};
+    return {getNavigator: () => this.refs.navigator};
+
   }
 
   render() {
     var currentMonth = months[(new Date()).getMonth()]
 
     return <NavigatorIOS
+        ref="navigator"
         initialRoute={{
           component: Overview,
           title: 'kwiri im ' + currentMonth,
@@ -40,7 +43,8 @@ const styles = StyleSheet.create({
 });
 
 kwiri.childContextTypes = {
-  navigator: React.PropTypes.object
+  navigator: React.PropTypes.object,
+  getNavigator: React.PropTypes.func
 };
 
 AppRegistry.registerComponent('kwiri', () => kwiri);
