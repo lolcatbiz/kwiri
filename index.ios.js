@@ -50,6 +50,9 @@ export default class kwiri extends Component {
 
   render() {
     var currentMonth = months[(new Date()).getMonth()]
+    if(!this.state.recipes && !this.state.produces) {
+      return <View></View>
+    }
     return <NavigatorIOS
         ref="navigator"
         initialRoute={{
