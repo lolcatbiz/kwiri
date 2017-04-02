@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView
-} from 'react-native';
+import {AppRegistry, StyleSheet, Text, View, ScrollView } from 'react-native';
 import List from './app/list'
 import months from './app/months'
-
-//import List from './app/list.js'
 
 export default class kwiri extends Component {
   render() {

@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 export default class Produce extends Component {
-
   render() {
     let produce = this.props.produce
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{produce.displayName}</Text>
-      </View>
-    );
+    return <View style={styles.container}>
+      <Text style={styles.text}>{produce.displayName}</Text>
+    </View>
   }
 }
 

@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView
-} from 'react-native';
-
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import Produce from './produce'
 
 export default class List extends Component {
@@ -24,6 +18,7 @@ export default class List extends Component {
   loadData() {
     var dataUrl = "https://spreadsheets.google.com/feeds/list/1vvwgg3KVj0LGL86dqyW1Ey-G7bcXheGIVIDMzA8LMus/od6/public/values?alt=json"
     this.setState({loading: true})
+
     fetch(dataUrl).then( (res) => {
         res.json().then( (data) => {
             console.log(data)
@@ -41,6 +36,7 @@ export default class List extends Component {
                 //image_url: entry["gsx$imageurl"]["$t"]
               }
             })
+
             this.setState({
               produces: window.produces,
               loading: false
@@ -49,7 +45,7 @@ export default class List extends Component {
     })
   }
 
-  render() {
+  producesForCurrentMonth() {
     let currentMonth = (new Date()).getMonth() + 1
     currentMonth = currentMonth >= 10 ? currentMonth.toString() : "0" + currentMonth
     var produces = this.state.produces || []
@@ -58,12 +54,15 @@ export default class List extends Component {
     }).sort( (a, b) => {
       return a.availabilityStored.indexOf(currentMonth)
     })
+    return produces
+  }
 
+  render() {
     return (
       <View style={styles.container}>
         <Text>{ this.state.loading ? "..." : "" }</Text>
         <View style={styles.list}>
-          { produces.map( produce => {
+          { this.producesForCurrentMonth().map( produce => {
             return <Produce produce={produce} key={produce.id} />
           })}
         </View>
