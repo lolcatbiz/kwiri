@@ -26,6 +26,7 @@ export default class kwiri extends Component {
     fetch("https://api.airtable.com/v0/app863P5eKD1VjAPh/Produces?api_key=keycA6O6ZQHG2DLdb").then( (res) => {
         res.json().then( (data) => {
             let produces = data.records.map( (record) => {
+              record.fields.id = record.id
               record.fields.availabilityFresh = record.fields.availabilityFresh || []
               record.fields.availabilityStored = record.fields.availabilityStored || []
               record.fields.displayName = record.fields.displayName && record.fields.displayName.length > 0 ? record.fields.displayName  : record.fields.name
@@ -39,6 +40,7 @@ export default class kwiri extends Component {
     fetch("https://api.airtable.com/v0/app863P5eKD1VjAPh/Recipes?api_key=keycA6O6ZQHG2DLdb").then( (res) => {
         res.json().then( (data) => {
             this.setState({ recipes: data.records.map( (record) => {
+              record.fields.id = record.id
               return record.fields
             })
           })

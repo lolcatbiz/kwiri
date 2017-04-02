@@ -22,6 +22,7 @@ export default class List extends Component {
     fetch(dataUrl).then( (res) => {
         res.json().then( (data) => {
             let produces = data.records.map( (record) => {
+              record.fields.id = record.id
               record.fields.availabilityFresh = record.fields.availabilityFresh || []
               record.fields.availabilityStored = record.fields.availabilityStored || []
               record.fields.displayName = record.fields.displayName && record.fields.displayName.length > 0 ? record.fields.displayName  : record.fields.name
@@ -85,8 +86,6 @@ export default class List extends Component {
             return <Produce produce={produce} key={produce.id} />
           })}
         </View>
-
-
       </View>
     );
   }

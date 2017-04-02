@@ -5,8 +5,6 @@ import List from './list'
 
 export default class Overview extends Component {
   render() {
-      var currentMonthId = (new Date()).getMonth()
-      var currentMonth = months[currentMonthId]
       return <View style={styles.container}>
           <ScrollView style={{width: '100%'}}>
             <List />

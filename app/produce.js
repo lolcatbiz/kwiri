@@ -10,6 +10,7 @@ export default class Produce extends Component {
       title: this.props.produce.displayName,
     })
   }
+
   render() {
     let produce = this.props.produce
     let style = StyleSheet.create({
@@ -38,6 +39,6 @@ const styles = StyleSheet.create({
 
 Produce.contextTypes = {
   getNavigator: React.PropTypes.func,
-  getRecipes: React.PropTypes.func,
-  getProduces: React.PropTypes.func
+  getRecipes:   React.PropTypes.func,
+  getProduces:  React.PropTypes.func
 };
