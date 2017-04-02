@@ -16,7 +16,7 @@ export default class List extends Component {
   }
 
   loadData() {
-    var dataUrl = "https://api.airtable.com/v0/app863P5eKD1VjAPh/Produces?api_key=keycA6O6ZQHG2DLdb&1"
+    var dataUrl = "https://api.airtable.com/v0/app863P5eKD1VjAPh/Produces?api_key=keycA6O6ZQHG2DLdb"
     this.setState({loading: true})
 
     fetch(dataUrl).then( (res) => {

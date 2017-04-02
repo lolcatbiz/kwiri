@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
 });
 
 Produce.contextTypes = {
-  navigator: React.PropTypes.object,
-  getNavigator: React.PropTypes.func
+  getNavigator: React.PropTypes.func,
+  getRecipes: React.PropTypes.func,
+  getProduces: React.PropTypes.func
 };
