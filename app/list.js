@@ -45,27 +45,57 @@ export default class List extends Component {
     })
   }
 
-  producesForCurrentMonth() {
+  newProducesForCurrentMonth() {
     let currentMonth = (new Date()).getMonth() + 1
     currentMonth = currentMonth >= 10 ? currentMonth.toString() : "0" + currentMonth
-    var produces = this.state.produces || []
-    produces = produces.filter( produce => {
-      return produce.availabilityFresh.indexOf(currentMonth) != -1 || produce.availabilityStored.indexOf(currentMonth) != -1
-    }).sort( (a, b) => {
-      return a.availabilityStored.indexOf(currentMonth)
+    return (this.state.produces || []).filter( produce => {
+      return produce.availabilityFresh.indexOf(currentMonth) == 0
     })
-    return produces
+  }
+
+  freshProducesForCurrentMonth() {
+    let currentMonth = (new Date()).getMonth() + 1
+    currentMonth = currentMonth >= 10 ? currentMonth.toString() : "0" + currentMonth
+    return (this.state.produces || []).filter( produce => {
+      return produce.availabilityFresh.indexOf(currentMonth) > 0
+    })
+  }
+
+  storedProducesForCurrentMonth() {
+    let currentMonth = (new Date()).getMonth() + 1
+    currentMonth = currentMonth >= 10 ? currentMonth.toString() : "0" + currentMonth
+    return (this.state.produces || []).filter( produce => {
+      return produce.availabilityStored.indexOf(currentMonth) != -1
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text>{ this.state.loading ? "..." : "" }</Text>
+
+        <Text>Die neue Ernte</Text>
         <View style={styles.list}>
-          { this.producesForCurrentMonth().map( produce => {
+          { this.newProducesForCurrentMonth().map( produce => {
             return <Produce produce={produce} key={produce.id} />
           })}
         </View>
+
+        <Text>Frischer wirds nicht</Text>
+        <View style={styles.list}>
+          { this.freshProducesForCurrentMonth().map( produce => {
+            return <Produce produce={produce} key={produce.id} />
+          })}
+        </View>
+
+        <Text>Gut Gelagertes Gemüse</Text>
+        <View style={styles.list}>
+          { this.storedProducesForCurrentMonth().map( produce => {
+            return <Produce produce={produce} key={produce.id} />
+          })}
+        </View>
+
+
       </View>
     );
   }
