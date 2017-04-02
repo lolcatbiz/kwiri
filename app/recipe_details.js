@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, TouchableHighlight, Image} from 'react-native';
+import Markdown from 'react-native-simple-markdown'
 import ProduceDetails from './produce_details'
 
 export default class RecipeDetails extends Component {
@@ -18,7 +19,7 @@ export default class RecipeDetails extends Component {
     })
 
     return <View style={this.styles().container}>
-        <Text style={this.styles().description}>{recipe.description}</Text>
+        <Markdown style={this.styles().description}>{recipe.description}</Markdown>
         <Text style={this.styles().headline}>Zutaten</Text>
 
         { produces.map( produce => {
