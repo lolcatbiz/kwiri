@@ -29,9 +29,9 @@ export default class List extends Component {
                 displayName: displayName && displayName.length > 0 ? displayName : entry["gsx$name"]["$t"],
                 availabilityFresh: entry["gsx$defresh"]["$t"],
                 availabilityStored: entry["gsx$destored"]["$t"],
+                image_url: entry["gsx$imgurl"]["$t"],
 
                 //months: entry["gsx$months"]["$t"],
-                //image_url: entry["gsx$imageurl"]["$t"]
               }
             })
 

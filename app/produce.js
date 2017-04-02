@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
+import {StyleSheet, Text, View, TouchableHighlight, Image} from 'react-native';
+
 
 export default class Produce extends Component {
   onSelect() {
@@ -11,6 +12,10 @@ export default class Produce extends Component {
     return <TouchableHighlight onPress={this.onSelect.bind(this)}>
       <View style={styles.container}>
         <Text style={styles.text}>{produce.displayName}</Text>
+        <Image
+          style={{width: 50, height: 50}}
+          source={{uri: produce.image_url}}
+        />
       </View>
     </TouchableHighlight>
   }

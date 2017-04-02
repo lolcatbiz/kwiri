@@ -19,6 +19,7 @@ export default class kwiri extends Component {
         }}
         style={{flex: 1}}
     />
+
   }
 }
 
