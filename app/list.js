@@ -21,8 +21,6 @@ export default class List extends Component {
 
     fetch(dataUrl).then( (res) => {
         res.json().then( (data) => {
-            console.log(data)
-
             window.produces = data.feed.entry.map( (entry) => {
               var displayName = entry["gsx$displayname"]["$t"]
               return {

@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
 
 export default class Produce extends Component {
+  onSelect() {
+    alert('hey')
+    console.log('ok')
+  }
   render() {
     let produce = this.props.produce
-    return <View style={styles.container}>
-      <Text style={styles.text}>{produce.displayName}</Text>
-    </View>
+    return <TouchableHighlight onPress={this.onSelect.bind(this)}>
+      <View style={styles.container}>
+        <Text style={styles.text}>{produce.displayName}</Text>
+      </View>
+    </TouchableHighlight>
   }
 }
 
@@ -24,3 +30,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
   }
 });
+
+Produce.contextTypes = {
+  navigator: React.PropTypes.object
+};

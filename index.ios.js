@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import {AppRegistry, StyleSheet, Text, View, ScrollView } from 'react-native';
+import {AppRegistry, StyleSheet, Text, View, ScrollView, NavigatorIOS } from 'react-native'
 import List from './app/list'
 import months from './app/months'
+import Overview from './app/overview'
 
 export default class kwiri extends Component {
+  getChildContext() {
+    return {navigator: this};
+  }
+
   render() {
-    var currentMonthId = (new Date()).getMonth()
-    var currentMonth = months[currentMonthId]
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Kwiri im { currentMonth }
-        </Text>
-        <ScrollView style={{width: '100%'}}>
-          <List />
-        </ScrollView>
-      </View>
-    );
+    var currentMonth = months[(new Date()).getMonth()]
+
+    return <NavigatorIOS
+        initialRoute={{
+          component: Overview,
+          title: 'kwiri im ' + currentMonth,
+        }}
+        style={{flex: 1}}
+    />
   }
 }
 
@@ -35,5 +37,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
+
+kwiri.childContextTypes = {
+  navigator: React.PropTypes.object
+};
 
 AppRegistry.registerComponent('kwiri', () => kwiri);
