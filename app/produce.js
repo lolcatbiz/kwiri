@@ -18,9 +18,9 @@ export default class Produce extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: produce.color ||  "#fff",
-        width: 120,
-        height: 120,
-        margin: 16
+        width: 140,
+        height: 60,
+        margin: 12
       }})
     return <TouchableHighlight onPress={this.onSelect.bind(this)}>
       <View style={style.container}>
